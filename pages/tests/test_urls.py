@@ -14,3 +14,13 @@ class PagesUrls(SimpleTestCase):
         url = reverse('pages:home')
         view_func = resolve(url).func
         self.assertEqual(view_func, views.home)
+
+    def test_if_about_url_runs_correct_view(self):
+        url = '/about/'
+        view_func = resolve(url).func
+        self.assertEqual(view_func, views.about)
+
+    def test_if_about_name_runs_correct_view(self):
+        url = reverse('pages:about')
+        view_func = resolve(url).func
+        self.assertEqual(view_func, views.about)
