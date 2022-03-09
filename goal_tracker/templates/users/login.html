@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Logowanie</legend>
+                {{ form }}
+            </fieldset>
+            <div>
+                <button type="submit">Zaloguj</button>
+                <small>
+                    <a href="{% url 'password_reset' %}">Reset hasła</a>
+                </small>
+            </div>
+        </form>
+        <div>
+            <small>
+                Nie masz jeszcze konta?
+                <a href="{% url 'register' %}">Zarejestruj</a>
+            </small>
+        </div>
+    </div>
+{% endblock content %}

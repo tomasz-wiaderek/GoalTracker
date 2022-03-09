@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Zarejestruj się</legend>
+                {{ form }}
+            </fieldset>
+            <div>
+                <button type="submit">Zarejestruj</button>
+            </div>
+        </form>
+        <div>
+            <small>
+                Masz już konto?
+                <a href="{% url 'login' %}">Zaloguj</a>
+            </small>
+        </div>
+    </div>
+{% endblock content %}
