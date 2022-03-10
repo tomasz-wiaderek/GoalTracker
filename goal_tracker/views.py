@@ -30,4 +30,4 @@ def update_user(request):
     context = {
         'user_form': user_form,
     }
-    return render(request, 'users/profile.html', context=context)
+    return render(request, 'users/update.html', context=context)
