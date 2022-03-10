@@ -14,20 +14,17 @@ def register_user(request):
             return redirect('login')
     else:
         form = UserRegisterForm()
-    return render(request, 'users/register.html', {'form': form})
+    return render(request, 'users/register.html', context={'form': form})
 
 
 @login_required(login_url='login')
 def update_user(request):
     if request.method == 'POST':
-        user_form = UserUpdateForm(request.POST, instance=request.user)
-        if user_form.is_valid():
-            user_form.save()
+        form = UserUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
             messages.success(request, 'Twój profil został zaktualizowany.')
             return redirect('update-user')
     else:
-        user_form = UserUpdateForm(instance=request.user)
-    context = {
-        'user_form': user_form,
-    }
-    return render(request, 'users/update.html', context=context)
+        form = UserUpdateForm(instance=request.user)
+    return render(request, 'users/update.html', context={'form': form})
