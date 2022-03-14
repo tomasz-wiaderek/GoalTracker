@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
-from django.utils.timezone import timedelta, datetime, make_aware
+from django.utils.timezone import timedelta, datetime, make_aware, now
 
 from habits.models import Habit, Milestone
 
@@ -33,6 +33,11 @@ class HabitTest(TestCase):
     def test_if_get_abstynance_time_is_timedelta(self):
 
         self.assertIsInstance(self.habit.get_abstynance_time(), timedelta)
+
+    def test_if_get_abstynance_time_returns_correct_time(self):
+        period = now() - make_aware(datetime(2022, 3, 13, 0, 0, 0))
+
+        self.assertEqual(self.habit.get_abstynance_time(), period)
 
     def test_if_get_current_milestone_returns_active_milestone(self):
 

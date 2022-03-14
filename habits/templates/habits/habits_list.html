@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if objects %}
+        <p>My bad habits:</p>
+        {% for obj in objects %}
+            <a href="#">{{ obj.name }}</a>
+            <small>Time of abstynence: {{ obj.get_abstynance_time }}</small>
+        {% endfor %}
+    {% else %}
+        <p>You did not specified any bad habits yet</p>
+    {% endif %}
+{% endblock %}
