@@ -22,6 +22,12 @@ class Habit(models.Model):
     def get_abstynance_time(self):
         return now() - self.start_date
 
+    def get_current_milestone(self):
+        return Milestone.objects.get(is_achieved=False, habit__pk=self.pk)
+
+    def get_all_milestones(self):
+        return Milestone.objects.filter(habit__pk=self.pk).order_by('-date_finished')
+
 
 class Milestone(models.Model):
     name = models.CharField(max_length=128)
@@ -33,3 +39,9 @@ class Milestone(models.Model):
 
     def __str__(self):
         return self.name
+
+    def set_is_achieved_true(self):
+        end_date = self.habit.start_date + self.req_abstynence_time
+        if now() >= end_date:
+            self.is_achieved = True
+            self.date_finished = end_date
