@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Habit, Milestone, Sentance
 
-# Register your models here.
+admin.site.register(Habit)
+admin.site.register(Milestone)
+admin.site.register(Sentance)
