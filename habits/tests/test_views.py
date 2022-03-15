@@ -179,3 +179,58 @@ class UpdateHabitTest(TestCase):
         self.assertEqual(response.request['REQUEST_METHOD'], 'POST')
         self.assertEqual(response.resolver_match.func, views.update_habit)
         self.assertEqual(response.status_code, 302)
+
+
+class DeleteHabitTest(TestCase):
+
+    def setUp(self):
+
+        self.user_owner = User.objects.create_user(username='TestUser', password='testing321')
+        self.user = User.objects.create_user(username='TestUser2', password='testing321')
+        start_date = datetime(2022, 3, 13, 0, 0, 0)
+        Habit.objects.create(
+            name='Alcohol',
+            owner=self.user_owner,
+            start_date=make_aware(start_date),
+            reason='It is bad for life.'
+        )
+        self.habit = Habit.objects.get(owner=self.user_owner)
+
+        self.client = Client()
+
+    def test_if_another_user_cant_delete_someones_habit(self):
+
+        self.client.login(username='TestUser2', password='testing321')
+        response = self.client.post(reverse('habits:delete', args=[self.habit.pk]))
+
+        self.assertTrue(self.habit)
+        self.assertRedirects(response, '/login/')
+        self.assertEqual(response.status_code, 302)
+
+    def test_if_delete_habit_POST_view_deletes_habit(self):
+
+        self.client.login(username='TestUser', password='testing321')
+        response = self.client.post(reverse('habits:delete', args=[self.habit.pk]))
+        queryset = Habit.objects.filter(owner=self.user_owner)
+
+        self.assertQuerysetEqual(queryset, [])
+        self.assertEqual(response.request['REQUEST_METHOD'], 'POST')
+        self.assertEqual(response.resolver_match.func, views.delete_habit)
+        self.assertEqual(response.status_code, 302)
+
+    def test_if_delete_habit_POST_view_redirects_correctly(self):
+
+        self.client.login(username='TestUser', password='testing321')
+        response = self.client.post(reverse('habits:delete', args=[self.habit.pk]))
+
+        self.assertRedirects(response, '/my_habits/list/')
+
+    def test_delete_habit_POST_view_as_unlogged_user(self):
+
+        response = self.client.post(reverse('habits:delete', args=[self.habit.pk]))
+
+        self.assertTrue(self.habit)
+        self.assertRedirects(response, '/login/?next=/my_habits/delete/1/')
+        self.assertEqual(response.request['REQUEST_METHOD'], 'POST')
+        self.assertEqual(response.resolver_match.func, views.delete_habit)
+        self.assertEqual(response.status_code, 302)

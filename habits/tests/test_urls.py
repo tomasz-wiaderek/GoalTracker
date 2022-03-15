@@ -25,3 +25,23 @@ class TestUrls(SimpleTestCase):
         url = reverse('habits:create')
         view_func = resolve(url).func
         self.assertEqual(view_func, views.create_habit)
+
+    def test_if_update_url_runs_correct_view(self):
+        url = '/my_habits/update/1/'
+        view_func = resolve(url).func
+        self.assertEqual(view_func, views.update_habit)
+
+    def test_if_update_url_name_runs_correct_view(self):
+        url = reverse('habits:update', args=[1])
+        view_func = resolve(url).func
+        self.assertEqual(view_func, views.update_habit)
+
+    def test_if_delete_url_runs_correct_view(self):
+        url = '/my_habits/delete/1/'
+        view_func = resolve(url).func
+        self.assertEqual(view_func, views.delete_habit)
+
+    def test_if_delete_url_name_runs_correct_view(self):
+        url = reverse('habits:delete', args=[1])
+        view_func = resolve(url).func
+        self.assertEqual(view_func, views.delete_habit)

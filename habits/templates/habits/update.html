@@ -17,7 +17,7 @@
         <legend>Actions:</legend>
         <button type="submit">Save changes</button>
         <button><a href="{% url 'habits:list' %}">Cancel</a></button>
-        <button><a href="#">Delete</a></button>
+        <button><a href="{% url 'habits:delete' form.instance.pk %}">Delete</a></button>
     </fieldset>
 </form>
 

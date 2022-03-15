@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Remove habit</legend>
+        <h4>Are you sure you want to remove habit {{ object.name }}?</h4>
+        <button type="submit">Delete</button>
+        <button><a href="{% url 'habits:update' object.pk %}">Cancel</a></button>
+    </fieldset>
+</form>
+
+{% endblock %}
