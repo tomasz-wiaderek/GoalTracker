@@ -5,5 +5,7 @@ from . import views
 
 app_name = 'habits'
 urlpatterns = [
-    path('my_habits/', views.list_habits, name='list-habits'),
+    path('list/', views.list_habits, name='list'),
+    path('create/', views.create_habit, name='create'),
+    path('update/<int:pk>/', views.update_habit, name='update'),
 ]

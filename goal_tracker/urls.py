@@ -22,7 +22,7 @@ from .views import register_user, update_user
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('pages.urls')),
-    path('', include('habits.urls')),
+    path('my_habits/', include('habits.urls')),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html', next_page='pages:home'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('register/', register_user, name='register'),

@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <h4>My bad habits</h4>
+    <button><a href="{% url 'habits:create' %}">Add new</a></button>
     {% if objects %}
-        <p>My bad habits:</p>
+        <p>I am committed to ending with:</p>
         {% for obj in objects %}
-            <a href="#">{{ obj.name }}</a>
+            <p>{{ obj.name }}</p>
             <small>Time of abstynence: {{ obj.get_abstynance_time }}</small>
+            <button><a href="{% url 'habits:update' obj.pk %}">Update</a></button>
         {% endfor %}
     {% else %}
         <p>You did not specified any bad habits yet</p>
