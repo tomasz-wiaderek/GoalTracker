@@ -26,11 +26,16 @@ def create_habit(request):
 @login_required(login_url='login')
 def update_habit(request, pk):
     habit = Habit.objects.get(pk=pk)
-    if request.method == 'POST':
-        form = HabitUpdateForm(request.POST, instance=habit)
-        if form.is_valid():
-            form.save()
-            return redirect('habits:list')
+    if habit.owner == request.user:
+        if request.method == 'POST':
+            form = HabitUpdateForm(request.POST, instance=habit)
+            if form.is_valid():
+                form.save()
+                return redirect('habits:list')
+        else:
+            form = HabitUpdateForm(instance=habit)
     else:
-        form = HabitUpdateForm(instance=habit)
+        return redirect('login')
     return render(request, template_name='habits/update.html', context={'form': form})
+
+
