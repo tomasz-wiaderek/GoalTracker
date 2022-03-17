@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, get_list_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Habit
-from .forms import HabitCreateForm, HabitUpdateForm
+from .forms import HabitCreateForm, HabitUpdateForm, HabitResetForm
 
 
 @login_required(login_url='login')
@@ -16,7 +16,9 @@ def create_habit(request):
         form = HabitCreateForm(request.POST)
         if form.is_valid():
             form.cleaned_data['owner'] = request.user
-            Habit.objects.create(**form.cleaned_data)
+            habit = Habit.objects.create(**form.cleaned_data)
+            habit.save()
+            habit.init_milestones()
             return redirect(reverse('habits:list'))
     else:
         form = HabitCreateForm()
@@ -49,3 +51,19 @@ def delete_habit(request, pk):
     else:
         return redirect('login')
     return render(request, template_name='habits/delete.html', context={'object': habit})
+
+
+@login_required(login_url='login')
+def reset_habit(request, pk):
+    habit = get_object_or_404(Habit, pk=pk)
+    if habit.owner == request.user:
+        if request.method == 'POST':
+            form = HabitResetForm(request.POST, instance=habit)
+            if form.is_valid():
+                form.save()
+                return redirect(reverse('habits:list'))
+        else:
+            form = HabitResetForm(instance=habit)
+    else:
+        return redirect('login')
+    return render(request, template_name='habits/reset.html', context={'form': form})

@@ -22,3 +22,12 @@ class HabitUpdateForm(forms.ModelForm):
     class Meta:
         model = Habit
         fields = ['name', 'reason']
+
+
+class HabitResetForm(forms.ModelForm):
+    start_date = forms.DateTimeField(
+        widget=forms.DateTimeInput(format='%y-%m-%d %H:%M', attrs={'placeholder': 'YYYY-MM-DD HH:MM'}))
+
+    class Meta:
+        model = Habit
+        fields = ['start_date']

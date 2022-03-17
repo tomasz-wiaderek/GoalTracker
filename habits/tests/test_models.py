@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.timezone import timedelta, datetime, make_aware, now
 
 from habits.models import Habit, Milestone
+from habits.initials import init_list
 
 
 class HabitTest(TestCase):
@@ -27,8 +28,27 @@ class HabitTest(TestCase):
 
         self.milestone2 = Milestone.objects.create(name='Three Days',
                                                    req_abstynence_time=timedelta(days=3),
-                                                   is_achieved=False,
+                                                   is_achieved=True,
                                                    habit=self.habit)
+
+        self.milestone3 = Milestone.objects.create(name='week',
+                                                   req_abstynence_time=timedelta(weeks=1),
+                                                   is_achieved=False,
+                                                   is_active=True,
+                                                   habit=self.habit)
+
+    def test_if_init_milestones_method_creates_initial_mileston(self):
+
+        start_date = datetime(2022, 3, 1, 0, 0, 0)
+        habit = Habit.objects.create(
+            name='Alco',
+            owner=self.user,
+            start_date=make_aware(start_date),
+            reason='It is bad for life.'
+        )
+
+        habit.init_milestones()
+        self.assertEqual(len(habit.get_all_milestones()), len(init_list))
 
     def test_if_get_abstynance_time_is_timedelta(self):
 
@@ -42,13 +62,19 @@ class HabitTest(TestCase):
     def test_if_get_current_milestone_returns_active_milestone(self):
 
         self.assertIsInstance(self.habit.get_current_milestone(), Milestone)
-        self.assertEqual(self.habit.get_current_milestone(), self.milestone2)
+        self.assertEqual(self.habit.get_current_milestone(), self.milestone3)
 
     def test_if_get_all_milestones_returns_correct_queryset(self):
 
-        queryset = Milestone.objects.filter(habit__pk=self.habit.pk).order_by('-date_finished')
+        queryset = Milestone.objects.filter(habit__pk=self.habit.pk).order_by('req_abstynence_time')
 
         self.assertQuerysetEqual(queryset, self.habit.get_all_milestones())
+
+    def test_if_delete_all_milestones_deletes_habits_milestones(self):
+
+        self.habit.delete_all_milestones()
+
+        self.assertQuerysetEqual(self.habit.get_all_milestones(), [])
 
 
 class MilestoneTest(TestCase):

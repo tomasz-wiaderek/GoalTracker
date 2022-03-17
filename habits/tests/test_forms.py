@@ -76,3 +76,28 @@ class HabitUpdateFormTest(TestCase):
         form = forms.HabitUpdateForm(data=self.data)
 
         self.assertFalse(form.is_valid())
+
+
+class HabitResetForm(TestCase):
+
+    def setUp(self):
+
+        self.client = Client()
+        self.user = User.objects.create_user(username='TestUser', password='testing321')
+
+        self.data = {
+            'start_date': '2022-03-01 00:00',
+        }
+
+    def test_HabitResetForm_is_valid(self):
+
+        form = forms.HabitResetForm(data=self.data)
+
+        self.assertTrue(form.is_valid())
+
+    def test_HabitResetForm_missing_name(self):
+
+        self.data['start_date'] = None
+        form = forms.HabitResetForm(data=self.data)
+
+        self.assertFalse(form.is_valid())

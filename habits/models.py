@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.timezone import now
 
+from .initials import init_list
+
 
 class Sentance(models.Model):
     content = models.CharField(max_length=256)
@@ -23,10 +25,19 @@ class Habit(models.Model):
         return now() - self.start_date
 
     def get_current_milestone(self):
-        return Milestone.objects.get(is_achieved=False, habit__pk=self.pk)
+        return Milestone.objects.get(is_active=True, habit__pk=self.pk)
 
     def get_all_milestones(self):
-        return Milestone.objects.filter(habit__pk=self.pk).order_by('-date_finished')
+        return Milestone.objects.filter(habit__pk=self.pk).order_by('req_abstynence_time')
+
+    def init_milestones(self):
+        for m in init_list:
+            Milestone.objects.create(name=m.get('name'),
+                                     req_abstynence_time=m.get('req_abstynence_time'),
+                                     habit=self)
+
+    def delete_all_milestones(self):
+        self.get_all_milestones().delete()
 
 
 class Milestone(models.Model):
@@ -34,6 +45,7 @@ class Milestone(models.Model):
     req_abstynence_time = models.DurationField(null=True)
     icon = models.ImageField(upload_to='icons/milestones/', default='icon.jpg')
     is_achieved = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
     date_finished = models.DateTimeField(null=True, blank=True)
     habit = models.ForeignKey(Habit, on_delete=models.CASCADE)
 
@@ -44,4 +56,5 @@ class Milestone(models.Model):
         end_date = self.habit.start_date + self.req_abstynence_time
         if now() >= end_date:
             self.is_achieved = True
+            self.is_active = False
             self.date_finished = end_date

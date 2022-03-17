@@ -5,19 +5,17 @@
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <fieldset>
-        <legend>Details of your habit:</legend>
+        <legend>Time of abstynence:</legend>
+        {{ form.instance.get_abstynance_time }}
+    </fieldset>
+    <fieldset>
+        <legend>Set new start date</legend>
         {{ form.as_p }}
     </fieldset>
     <fieldset>
-        <legend>Time of abstynence:</legend>
-        {{ form.instance.get_abstynance_time }}
-        <button><a href="{% url 'habits:reset' form.instance.pk %}">Reset time</a></button>
-    </fieldset>
-    <fieldset>
         <legend>Actions:</legend>
-        <button type="submit">Save changes</button>
+        <button type="submit">Save</button>
         <button><a href="{% url 'habits:list' %}">Cancel</a></button>
-        <button><a href="{% url 'habits:delete' form.instance.pk %}">Delete</a></button>
     </fieldset>
 </form>
 
