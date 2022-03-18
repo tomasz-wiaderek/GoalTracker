@@ -14,6 +14,17 @@
         <button><a href="{% url 'habits:reset' form.instance.pk %}">Reset time</a></button>
     </fieldset>
     <fieldset>
+        <legend>Your milestones:</legend>
+        <ul>
+            <p>Achieved:</p>
+        {% for m in form.instance.get_all_achieved_milestones %}
+            <li>{{ m }}</li>
+        {% endfor %}
+            <p>Current goal:</p>
+            {{ form.instance.get_current_milestone }}
+        </ul>
+    </fieldset>
+    <fieldset>
         <legend>Actions:</legend>
         <button type="submit">Save changes</button>
         <button><a href="{% url 'habits:list' %}">Cancel</a></button>

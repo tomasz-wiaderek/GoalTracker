@@ -25,7 +25,7 @@ class Habit(models.Model):
         return now() - self.start_date
 
     def get_current_milestone(self):
-        return Milestone.objects.get(is_active=True, habit__pk=self.pk)
+        return Milestone.objects.get(habit__pk=self.pk, is_active=True)
 
     def get_all_milestones(self):
         return Milestone.objects.filter(habit__pk=self.pk).order_by('req_abstynence_time')
@@ -55,7 +55,6 @@ class Habit(models.Model):
 class Milestone(models.Model):
     name = models.CharField(max_length=128)
     req_abstynence_time = models.DurationField(null=True)
-    icon = models.ImageField(upload_to='icons/milestones/', default='icon.jpg')
     is_achieved = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     date_finished = models.DateTimeField(null=True, blank=True)

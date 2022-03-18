@@ -11,11 +11,11 @@
       <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <fieldset>
-                <legend>Twój profil</legend>
-                {{ form }}
+                <legend>Edit your data:</legend>
+                {{ form.as_p }}
             </fieldset>
             <div>
-                <button type="submit">Edytuj</button>
+                <button type="submit">Update</button>
             </div>
       </form>
     </div>
