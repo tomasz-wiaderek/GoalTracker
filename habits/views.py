@@ -19,6 +19,7 @@ def create_habit(request):
             habit = Habit.objects.create(**form.cleaned_data)
             habit.save()
             habit.init_milestones()
+            habit.scan_and_update_milestones()
             return redirect(reverse('habits:list'))
     else:
         form = HabitCreateForm()
@@ -61,6 +62,9 @@ def reset_habit(request, pk):
             form = HabitResetForm(request.POST, instance=habit)
             if form.is_valid():
                 form.save()
+                habit.delete_all_milestones()
+                habit.init_milestones()
+                habit.scan_and_update_milestones()
                 return redirect(reverse('habits:list'))
         else:
             form = HabitResetForm(instance=habit)

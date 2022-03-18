@@ -106,14 +106,15 @@ class MilestoneTest(TestCase):
                                                    is_achieved=False,
                                                    habit=self.habit)
 
-    def test_if_method_set_is_achieved_true_updates_field_when_abstynence_time_achieved(self):
+    def test_if_update_status_method_updates_field_when_abstynence_time_achieved(self):
 
-        self.milestone2.set_is_achieved_true()
+        self.milestone2.update_status()
 
         self.assertTrue(self.milestone2.is_achieved)
+        self.assertFalse(self.milestone2.is_active)
 
-    def test_if_method_set_is_achieved_true_dont_updates_field_when_abstynence_time_not_achieved(self):
+    def test_if_update_status_method_dont_updates_field_when_abstynence_time_not_achieved(self):
 
-        self.milestone3.set_is_achieved_true()
+        self.milestone3.update_status()
 
         self.assertFalse(self.milestone3.is_achieved)

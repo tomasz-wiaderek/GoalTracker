@@ -1,10 +1,10 @@
 from django.test import TestCase, Client
-from django.utils.timezone import datetime, make_aware
+from django.utils.timezone import datetime, make_aware, now
 from django.urls import reverse
 from django.contrib.auth.models import User
 
 from habits import views
-from habits.models import Habit
+from habits.models import Habit, Milestone
 
 
 class ListHabitsTest(TestCase):
@@ -244,7 +244,7 @@ class ResetHabitTest(TestCase):
         self.habit = Habit.objects.create(
             name='Alcohol',
             owner=self.user_owner,
-            start_date=make_aware(datetime(2022, 3, 13, 0, 0, 0)),
+            start_date=make_aware(datetime(2022, 3, 1, 8, 0, 0)),
             reason='It is bad for life.'
         )
         self.data = {
@@ -283,7 +283,7 @@ class ResetHabitTest(TestCase):
 
         self.assertRedirects(response, '/my_habits/list/')
 
-    def test_delete_habit_POST_view_as_unlogged_user(self):
+    def test_reset_habit_POST_view_as_unlogged_user(self):
 
         time_pre = self.habit.start_date
         response = self.client.post(reverse('habits:reset', args=[self.habit.pk]), data=self.data)
