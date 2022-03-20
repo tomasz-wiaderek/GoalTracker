@@ -7,6 +7,8 @@ from .forms import HabitCreateForm, HabitUpdateForm, HabitResetForm
 @login_required(login_url='login')
 def list_habits(request):
     habits = Habit.objects.filter(owner=request.user).order_by('start_date')
+    for h in habits:
+        h.scan_and_update_milestones()
     return render(request, template_name='habits/list.html', context={'objects': habits})
 
 

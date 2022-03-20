@@ -118,3 +118,22 @@ class MilestoneTest(TestCase):
         self.milestone3.update_status()
 
         self.assertFalse(self.milestone3.is_achieved)
+
+
+class StartTimerTest(TestCase):
+
+    def setUp(self):
+        self.user = User.objects.create_user(username='TestUser', password='testing321')
+        self.habit = Habit.objects.create(
+            name='Alcohol',
+            owner=self.user,
+            start_date=make_aware(datetime(2022, 3, 18, 16, 0, 0)),
+            reason='It is bad for life.'
+        )
+
+    def test_timer(self):
+        self.milestone5 = Milestone.objects.create(name='One Day',
+                                                   req_abstynence_time=timedelta(minutes=11),
+                                                   is_achieved=False,
+                                                   habit=self.habit)
+        self.milestone5.start_timer()
