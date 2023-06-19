@@ -47,9 +47,9 @@ class Habit(models.Model):
         milestones = self.get_all_milestones()
         for m in range(0, len(milestones)):
             milestones[m].update_status()
-            if milestones[m].is_achieved and m < len(milestones)-1:
-                milestones[m+1].is_active = True
-                milestones[m+1].save()
+            if milestones[m].is_achieved and m < len(milestones) - 1:
+                milestones[m + 1].is_active = True
+                milestones[m + 1].save()
 
 
 class Milestone(models.Model):

@@ -74,4 +74,3 @@ class UserUpdateFormTest(TestCase):
         form = UserUpdateForm(data=self.data)
 
         self.assertFalse(form.is_valid())
-

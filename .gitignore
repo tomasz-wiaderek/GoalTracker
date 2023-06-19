@@ -1,3 +1,13 @@
+
+.env.prod
+.env.prod.db
+.env.prod.proxy-companion
+.env.staging
+.env.staging.proxy-companion
+*.pem
+notes.odt
+
+
 # Created by https://www.toptal.com/developers/gitignore/api/python,django,pycharm
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,django,pycharm
 

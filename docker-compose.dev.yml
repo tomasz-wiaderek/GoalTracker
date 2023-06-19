@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+
+  web-dev:
+    container_name: web-dev-cont
+    build:
+      context: ./app
+      dockerfile: Dockerfile.dev
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./app/:/usr/src/app/
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - db-dev
+
+  db-dev:
+    container_name: db-dev-cont
+    image: postgres:13.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=gtuser
+      - POSTGRES_PASSWORD=gtpassword
+      - POSTGRES_DB=gtdb
+
+volumes:
+  postgres_data:
