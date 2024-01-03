@@ -22,10 +22,8 @@ services:
     image: postgres:15
     volumes:
       - postgres_data_dev:/var/lib/postgresql/data/
-    environment:
-      - POSTGRES_USER=gtuser
-      - POSTGRES_PASSWORD=gtpassword
-      - POSTGRES_DB=gt_dev_db
+    env_file:
+      - ./.env.dev.db
 
 volumes:
   postgres_data_dev:
