@@ -2,12 +2,11 @@ version: '3.8'
 
 services:
 
-  web-stg:
-    container_name: web-stg-cont
+  web-uat:
+    container_name: web-cont-uat
     build:
       context: ./app
       dockerfile: Dockerfile.prod
-    image: 054372962176.dkr.ecr.eu-central-1.amazonaws.com/gtrepo:web-stg
     command: gunicorn goal_tracker.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - static_volume:/home/app/web/staticfiles
@@ -15,12 +14,21 @@ services:
     expose:
       - 8000
     env_file:
-      - ./.env.staging
+      - ./.env.uat
+    depends_on:
+      - db-uat
 
-  nginx-proxy-stg:
-    container_name: nginx-proxy-stg
-    build: nginx
-    image: 054372962176.dkr.ecr.eu-central-1.amazonaws.com/gtrepo:nginx-proxy-stg
+  db-uat:
+    container_name: db-uat-cont
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env.uat.db
+
+  nginx-proxy-uat:
+    container_name: nginx-proxy-uat-cont
+    build: ./nginx
     restart: always
     ports:
       - 443:443
@@ -33,13 +41,13 @@ services:
       - vhost:/etc/nginx/vhost.d
       - /var/run/docker.sock:/tmp/docker.sock:ro
     depends_on:
-      - web-stg
+      - web-uat
 
-  nginx-proxy-letsencrypt-stg:
-    container_name: nginx-proxy-letsencrypt-stg
-    image: jrcs/letsencrypt-nginx-proxy-companion
+  acme-companion-uat:
+    container_name: acme-companion-uat-cont
+    image: nginxproxy/acme-companion
     env_file:
-      - ./.env.staging.proxy-companion
+      - ./.env.uat.proxy-companion
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - certs:/etc/nginx/certs
@@ -47,9 +55,10 @@ services:
       - vhost:/etc/nginx/vhost.d
       - acme:/etc/acme.sh
     depends_on:
-      - nginx-proxy-stg
+      - nginx-proxy-uat
 
 volumes:
+  postgres_data:
   static_volume:
   media_volume:
   certs:
