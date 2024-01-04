@@ -10,11 +10,14 @@
             </fieldset>
             <div>
                 <button type="submit">Log in</button>
-                <small>
-                    <a href="{% url 'password_reset' %}">Reset password</a>
-                </small>
             </div>
         </form>
+        <div>
+            <small>
+                Forgot your password?
+                <a href="{% url 'password_reset' %}">Reset password</a>
+            </small>
+        </div>
         <div>
             <small>
                 Are you new here?

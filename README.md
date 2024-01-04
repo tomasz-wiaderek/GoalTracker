@@ -31,23 +31,21 @@ Enter below to login using email nad password
 ``` 
 http://127.0.0.1:8000/login/
 ```
-###Functionalities
-When logged out you can reset your password using your email.
+## Functionalities
+When logged out you can reset your password using your email. - Temporarily turned off
 
 Chose link <u>My profile</u> to view and/or update your Username and Email.
 
 Chose link <u>My habits</u> to view list of all habits added by you and time of abstynence.
 
-From this view you can also:
-Add new habit,
-Update existing habit,
-Chagen name and description of your habit,
-Reset you habit - change the time of the last occurrance,
-See achieved and current milestone,
+From this view you can also:  
+Add new habit,  
+Update existing habit,  
+Chagen name and description of your habit,  
+Reset you habit - change the time of the last occurrance,  
+See achieved and current milestone,  
 Delete habit.
 
 
 ## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
+Additional features and improvements are under development. Any suggestions are most welcome.
