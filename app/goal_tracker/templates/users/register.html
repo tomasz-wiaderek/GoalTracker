@@ -5,17 +5,17 @@
         <form method="POST">
             {% csrf_token %}
             <fieldset>
-                <legend>Zarejestruj się</legend>
+                <legend>Register</legend>
                 {{ form }}
             </fieldset>
             <div>
-                <button type="submit">Zarejestruj</button>
+                <button type="submit">Register</button>
             </div>
         </form>
         <div>
             <small>
-                Masz już konto?
-                <a href="{% url 'login' %}">Zaloguj</a>
+                Do you already have an account?
+                <a href="{% url 'login' %}">Login</a>
             </small>
         </div>
     </div>

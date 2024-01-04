@@ -11,6 +11,6 @@
             <button><a href="{% url 'habits:update' obj.pk %}">Update</a></button>
         {% endfor %}
     {% else %}
-        <p>You did not specified any bad habits yet</p>
+        <p>You haven't identified any bad habits yet</p>
     {% endif %}
 {% endblock %}

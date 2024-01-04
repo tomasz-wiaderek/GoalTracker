@@ -13,9 +13,9 @@
             {% if user.is_authenticated %}
                 <a href="{% url 'habits:list' %}">My habits</a>
                 <a href="{% url 'update-user' %}">My profile</a>
-                <a href="{% url 'logout' %}">Log Out</a>
+                <a href="{% url 'logout' %}">Log out</a>
             {% else %}
-                <a href="{% url 'login' %}">Log In</a>
+                <a href="{% url 'login' %}">Login</a>
                 <a href="{% url 'register' %}">Register</a>
             {% endif %}
         </div>
