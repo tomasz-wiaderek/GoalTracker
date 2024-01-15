@@ -21,6 +21,7 @@ services:
   db-uat:
     container_name: db-uat-cont
     image: postgres:15
+    restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
