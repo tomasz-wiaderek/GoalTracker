@@ -1,22 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div>
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset>
-                <legend>Register</legend>
-                {{ form }}
-            </fieldset>
-            <div>
-                <button type="submit">Register</button>
-            </div>
-        </form>
-        <div>
+
+    <div class="row">
+        <div class="col">
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>Register</legend>
+                    {{ form }}
+                </fieldset>
+                <div>
+                    <button type="submit">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
             <small>
                 Do you already have an account?
                 <a href="{% url 'login' %}">Login</a>
             </small>
         </div>
     </div>
+
 {% endblock content %}
