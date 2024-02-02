@@ -32,7 +32,7 @@ Enter below to login using email nad password
 http://127.0.0.1:8000/login/
 ```
 ## Functionalities
-When logged out you can reset your password using your email. - Temporarily turned off
+When logged out you can reset your password using your email. Email sender served by mailtrap.io.<br>
 
 Chose link <u>My profile</u> to view and/or update your Username and Email.
 
