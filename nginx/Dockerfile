@@ -1,4 +1,4 @@
-FROM nginxproxy/nginx-proxy
+FROM nginxproxy/nginx-proxy:1.4
 
 RUN rm /etc/nginx/conf.d/default.conf
 

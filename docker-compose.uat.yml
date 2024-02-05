@@ -3,16 +3,16 @@ version: '3.8'
 services:
 
   web-uat:
-    container_name: web-cont-uat
+    container_name: web-uat-cont
     build:
       context: ./app
       dockerfile: Dockerfile.prod
-    command: gunicorn goal_tracker.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn goal_tracker.wsgi:application --bind 0.0.0.0:8080
     volumes:
       - static_volume:/home/app/web/staticfiles
       - media_volume:/home/app/web/mediafiles
     expose:
-      - 8000
+      - 8080
     env_file:
       - ./.env.uat
     depends_on:
@@ -20,7 +20,7 @@ services:
 
   db-uat:
     container_name: db-uat-cont
-    image: postgres:15
+    image: postgres:16.1
     restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data/

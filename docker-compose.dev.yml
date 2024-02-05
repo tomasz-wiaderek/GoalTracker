@@ -19,7 +19,7 @@ services:
 
   db-dev:
     container_name: db-dev-cont
-    image: postgres:15
+    image: postgres:16.1
     restart: always
     volumes:
       - postgres_data_dev:/var/lib/postgresql/data/
