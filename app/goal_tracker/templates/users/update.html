@@ -1,26 +1,12 @@
-{% extends 'base.html' %}
+{% extends './users.html' %}
 
 {% block content %}
-
-    <div class="row">
-        <div class="col">
-            <h2>{{ user.username }}</h2>
+            <h1 class="h3 mb-3 fw-normal">{{ user.username }}</h1>
             <p>{{ user.email }}</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-          <form method="POST" enctype="multipart/form-data">
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                <fieldset>
-                    <legend>Edit your data:</legend>
+                <h1 class="h3 mb-3 fw-normal">Edit your data:</h1>
                     {{ form.as_p }}
-                </fieldset>
-                <div>
-                    <button type="submit">Update</button>
-                </div>
-          </form>
-        </div>
-    </div>
-
+                <button class="btn btn-primary w-100 py-2 mb-2" type="submit">Update</button>
+            </form>
 {% endblock content %}

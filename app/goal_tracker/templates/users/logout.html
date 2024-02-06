@@ -1,14 +1,8 @@
-{% extends 'base.html' %}
+{% extends './users.html' %}
 
 {% block content %}
-
-<div class="d-flex py-4">
-    <div class="m-auto p-3 rounded-3 bg-light">
-        <h1 class="h3 mb-3 fw-normal">You have been successfully logged out.</h1>
-        <small>
-            <a href="{% url 'login' %}">Log in again</a>
-        </small>
-    </div>
-</div>
-
+            <h1 class="h3 mb-3 fw-normal">You have been successfully logged out.</h1>
+            <small>
+                <a href="{% url 'login' %}">Log in again</a>
+            </small>
 {% endblock content %}
