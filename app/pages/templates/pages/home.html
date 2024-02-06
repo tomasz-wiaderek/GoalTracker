@@ -2,15 +2,12 @@
 
 {% block content %}
 
-    <div class="row">
-        <div class="col">
-            <H1>This is the Home Page</H1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <p>Content under construciton</p>
-        </div>
-    </div>
+<div class="container text-center text-light">
+    <h1>Take back control!</h1>
+    <p class="lead">Overcoming addiction is extremely hard. With GoalsTracker you can follow all of your bad habits or addictions to analyze them and beat them.</p>
+    <p class="lead">
+      <a href="{% url 'pages:about' %}" class="btn btn-lg btn-light fw-bold border-white bg-white">Learn more</a>
+    </p>
+</div>
 
 {% endblock %}
