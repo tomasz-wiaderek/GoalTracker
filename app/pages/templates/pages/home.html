@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
-{% block content %}
-
-<div class="container text-center text-light">
-    <h1>Take back control!</h1>
-    <p class="lead">Overcoming addiction is extremely hard. With GoalsTracker you can follow all of your bad habits or addictions to analyze them and beat them.</p>
-    <p class="lead">
-      <a href="{% url 'pages:about' %}" class="btn btn-lg btn-light fw-bold border-white bg-white">Learn more</a>
-    </p>
-</div>
-
-{% endblock %}
+{% block main %}
+    <main class="my-auto">
+        <div class="container text-center text-light">
+            <h1>Take back control!</h1>
+            <p class="lead">Overcoming addiction is extremely hard. With GoalsTracker you can follow all of your bad habits or addictions to analyze them and beat them.</p>
+            <p class="lead">
+              <a href="{% url 'pages:about' %}" class="btn btn-lg btn-light fw-bold border-white bg-white">Learn more</a>
+            </p>
+        </div>
+    </main>
+{% endblock main%}

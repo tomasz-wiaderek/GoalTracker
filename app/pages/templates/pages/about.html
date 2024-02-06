@@ -1,48 +1,50 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<div class="h-100 bg-light">
-    <div class="row p-3">
-        <div class="col text-center">
-            <small>
-                This is a non-commercial student project inspired by <b>Quitzilla</b> mobile app.
-                Visit this <a href="https://www.quitzilla.com/" target="_blank">page</a> to check this awsome app.
-            </small>
-        </div>
-    </div>
-    <div class="row p-3">
-        <div class="col text-center">
-            <p>
-                GoalTracker is a web app that allows you to track your progress in fighting your bad habits.<br>
+{% block main %}
+    <main class="h-100 bg-light">
+        <div class="container h-100">
+            <div class="row p-3">
+                <div class="col text-center">
+                    <small>
+                        This is a non-commercial student project inspired by <b>Quitzilla</b> mobile app.
+                        Visit this <a href="https://www.quitzilla.com/" target="_blank">page</a> to check this awsome app.
+                    </small>
+                </div>
+            </div>
+            <div class="row p-3">
+                <div class="col text-center">
+                    <p>
+                        GoalTracker is a web app that allows you to track your progress in fighting your bad habits.<br>
 
-                Add a habit that you want to quit with and the app will track your progress and duration of abstinence.
-                Milestones will be set automatically to keep you motivated.
-            </p>
+                        Add a habit that you want to quit with and the app will track your progress and duration of abstinence.
+                        Milestones will be set automatically to keep you motivated.
+                    </p>
+                </div>
+            </div>
+            <div class="row p-3">
+                <div class="col text-center">
+                    <p>Functionalities:</p>
+                    <p>
+                        When logged out you can reset your password using your email. Email sender served by mailtrap.io.<br>
+                        Chose link <i>My profile</i> to view and/or update your Username and Email.<br>
+                        Chose link <i>My habits</i> to view list of all habits added by you and time of abstynence.<br>
+                    </p>
+                    <p class="mb-0">From <i>My habits</i> view you can also:</p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Add new habit</li>
+                        <li class="list-group-item">Update existing habit</li>
+                        <li class="list-group-item">Chagen name and description of your habit</li>
+                        <li class="list-group-item">Reset you habit - change the time of the last occurrance</li>
+                        <li class="list-group-item">See achieved and current milestone</li>
+                        <li class="list-group-item">Delete habit.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row p-3">
+                <div class="col text-center">
+                    <p>Additional features and improvements are under development. Any suggestions are most welcome.</p>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="row p-3">
-        <div class="col text-center">
-            <p>Functionalities:</p>
-            <p>
-                When logged out you can reset your password using your email. Email sender served by mailtrap.io.<br>
-                Chose link <i>My profile</i> to view and/or update your Username and Email.<br>
-                Chose link <i>My habits</i> to view list of all habits added by you and time of abstynence.<br>
-            </p>
-            <p class="mb-0">From <i>My habits</i> view you can also:</p>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Add new habit</li>
-                <li class="list-group-item">Update existing habit</li>
-                <li class="list-group-item">Chagen name and description of your habit</li>
-                <li class="list-group-item">Reset you habit - change the time of the last occurrance</li>
-                <li class="list-group-item">See achieved and current milestone</li>
-                <li class="list-group-item">Delete habit.</li>
-            </ul>
-        </div>
-    </div>
-    <div class="row p-3">
-        <div class="col text-center">
-            <p>Additional features and improvements are under development. Any suggestions are most welcome.</p>
-        </div>
-    </div>
-</div>
-{% endblock content%}
+    </main>
+{% endblock main%}
