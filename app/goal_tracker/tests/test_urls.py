@@ -2,7 +2,7 @@ from django.test import SimpleTestCase
 from django.contrib.auth import views as auth_views
 from django.urls import reverse, resolve
 
-from goal_tracker import views
+from .. import views
 
 
 class TestUrls(SimpleTestCase):

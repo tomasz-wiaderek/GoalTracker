@@ -3,8 +3,8 @@ from django.utils.timezone import datetime, make_aware, now
 from django.urls import reverse
 from django.contrib.auth.models import User
 
-from habits import views
-from habits.models import Habit, Milestone
+from .. import views
+from ..models import Habit, Milestone
 
 
 class ListHabitsTest(TestCase):

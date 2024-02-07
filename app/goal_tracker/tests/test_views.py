@@ -2,7 +2,7 @@ from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.urls import reverse
 
-from goal_tracker.views import register_user, update_user
+from ..views import register_user, update_user
 
 
 class RegisterUserTest(TestCase):

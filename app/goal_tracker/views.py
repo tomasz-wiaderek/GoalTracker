@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from goal_tracker.forms import UserRegisterForm, UserUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm
 
 
 def register_user(request):

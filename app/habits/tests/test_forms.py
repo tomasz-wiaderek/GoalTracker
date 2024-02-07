@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
-from habits import forms
+from .. import forms
 
 
 class HabitCreateFormTest(TestCase):

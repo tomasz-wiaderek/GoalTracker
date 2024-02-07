@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.test import Client
 from django.urls import reverse
 
-from pages import views
+from .. import views
 
 
 class HomeViewTests(TestCase):

@@ -2,8 +2,8 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from django.utils.timezone import timedelta, datetime, make_aware, now
 
-from habits.models import Habit, Milestone
-from habits.initials import init_list
+from ..models import Habit, Milestone
+from ..initials import init_list
 
 
 class HabitTest(TestCase):

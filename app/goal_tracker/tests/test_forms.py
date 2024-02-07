@@ -1,5 +1,5 @@
 from django.test import TestCase
-from goal_tracker.forms import UserRegisterForm, UserUpdateForm
+from ..forms import UserRegisterForm, UserUpdateForm
 
 
 class UserRegisterFormTest(TestCase):

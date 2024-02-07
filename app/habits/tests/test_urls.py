@@ -1,7 +1,7 @@
 from django.test import SimpleTestCase
 from django.urls import resolve, reverse
 
-from habits import views
+from .. import views
 
 
 class TestUrls(SimpleTestCase):
