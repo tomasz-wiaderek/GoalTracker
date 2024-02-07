@@ -26,7 +26,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pages',
     'habits',
-    'bootstrap5',
 ]
 
 MIDDLEWARE = [
