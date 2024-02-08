@@ -1,22 +1,13 @@
-{% extends 'base.html' %}
-
+{% extends 'body.html' %}
 {% block content %}
-
-    <div class="row">
-        <div class="col">
-            <form action="{% url 'habits:create' %}" method="post">
-                {% csrf_token %}
-                <fieldset>
-                    <legend>Add the habit you want to break with</legend>
+                <h4 class="py-3">Add the habit you want to break with</h4>
+                <form method="post" action="{% url 'habits:create' %}">
+                    {% csrf_token %}
                     {{ form.as_p }}
-                </fieldset>
-                <fieldset>
-                    <button type="submit">Add</button>
-                    <button type="reset">Clear</button>
-                    <button><a href="{% url 'habits:list' %}">Cancel</a></button>
-                </fieldset>
-            </form>
-        </div>
-    </div>
-
+                    <fieldset class="pt-3">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                        <button type="reset" class="btn btn-outline-secondary">Clear</button>
+                        <a href="{% url 'habits:list' %}" class="btn btn-secondary">Cancel</a>
+                    </fieldset>
+                </form>
 {% endblock %}

@@ -1,19 +1,12 @@
-{% extends 'base.html' %}
-
+{% extends 'body.html' %}
 {% block content %}
-
-    <div class="row">
-        <div class="col">
-            <form method="post">
-                {% csrf_token %}
-                <fieldset>
-                    <legend>Remove habit</legend>
-                    <h5>Are you sure you want to remove habit {{ object.name }}?</h5>
-                    <button type="submit">Delete</button>
-                    <button><a href="{% url 'habits:update' object.pk %}">Cancel</a></button>
-                </fieldset>
-            </form>
-        </div>
-    </div>
-
+                <form method="post">
+                    {% csrf_token %}
+                    <h4 class="py-3">Delete habit</h4>
+                    <h5>Are you sure you want to remove the habit: {{ object.name }}?</h5>
+                    <fieldset class="pt-3">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <a href="{% url 'habits:update' object.pk %}" class="btn btn-secondary">Cancel</a>
+                    </fieldset>
+                </form>
 {% endblock %}

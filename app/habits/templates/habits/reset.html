@@ -1,29 +1,15 @@
-{% extends 'base.html' %}
-
+{% extends 'body.html' %}
 {% block content %}
-
-    <div class="row">
-        <div class="col">
-
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <fieldset>
-                <legend>Time of abstynence:</legend>
-                {{ form.instance.get_abstynance_time }}
-            </fieldset>
-            <fieldset>
-                <legend>Set new start date</legend>
-                {{ form.as_p }}
-                <small>Note that all your achieved milestones will be reset as well.</small>
-            </fieldset>
-            <fieldset>
-                <legend>Actions:</legend>
-                <button type="submit">Save</button>
-                <button><a href="{% url 'habits:list' %}">Cancel</a></button>
-            </fieldset>
-        </form>
-
-        </div>
-    </div>
-
-{% endblock %}
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h4 class="py-3">Time of abstynence:</h4>
+                    <p>{{ form.instance.get_abstynance_time }}</p>
+                    <h4 class="py-3">Set new start date</h4>
+                    {{ form.as_p }}
+                    <small>Note that all your achieved milestones will be reset as well.</small>
+                    <fieldset class="pt-3">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <a href="{% url 'habits:list' %}" class="btn btn-secondary">Cancel</a>
+                    </fieldset>
+                </form>
+{% endblock content %}

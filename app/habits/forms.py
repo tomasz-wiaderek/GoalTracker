@@ -7,7 +7,7 @@ class HabitCreateForm(forms.ModelForm):
     start_date = forms.DateTimeField(
         widget=forms.DateTimeInput(format='%Y-%m-%d %H:%M', attrs={'placeholder': 'YYYY-MM-DD HH:MM'}))
     reason = forms.CharField(
-        widget=forms.Textarea(attrs={'rows': 5, 'cols': 50}))
+        widget=forms.Textarea(attrs={'rows': 1, 'cols': 20}))
 
     class Meta:
         model = Habit
@@ -17,7 +17,7 @@ class HabitCreateForm(forms.ModelForm):
 class HabitUpdateForm(forms.ModelForm):
     name = forms.CharField(strip=True)
     reason = forms.CharField(
-        widget=forms.Textarea(attrs={'rows': 5, 'cols': 50}))
+        widget=forms.Textarea(attrs={'rows': 1, 'cols': 20}))
 
     class Meta:
         model = Habit
